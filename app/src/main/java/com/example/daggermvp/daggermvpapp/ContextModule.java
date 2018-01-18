@@ -19,6 +19,8 @@ public class ContextModule {
     }
 
     @Provides
+    @DaggerMvpApplicationScope
+    @ApplicationContextQualifier
     public Context context() {
         return context;
     }

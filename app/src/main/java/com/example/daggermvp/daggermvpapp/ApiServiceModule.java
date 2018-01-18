@@ -18,11 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiServiceModule {
 
     @Provides
+    @DaggerMvpApplicationScope
     public ApiService apiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
     @Provides
+    @DaggerMvpApplicationScope
     public Retrofit retrofit(OkHttpClient okHttpClient, Gson gson) {
         //Client Module
         return new Retrofit.Builder()
@@ -33,6 +35,7 @@ public class ApiServiceModule {
     }
 
     @Provides
+    @DaggerMvpApplicationScope
     public Gson gson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         //gsonBuilder.registerTypeAdapter(DateTime.class,new DateTimeConver)

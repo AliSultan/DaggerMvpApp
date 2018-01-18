@@ -9,6 +9,7 @@ import dagger.Component;
  * Created by Ali on 1/17/2018.
  */
 
+@DaggerMvpApplicationScope
 @Component(modules = {ApiServiceModule.class, PicassoModule.class})
 public interface DaggerMvpApplicationComponent {
 

@@ -3,6 +3,7 @@ package com.example.daggermvp.daggermvpapp;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.daggermvp.daggermvpapp.data.network.ApiService;
 import com.google.gson.Gson;
@@ -31,6 +32,7 @@ public class DaggerMvpApplication extends Application {
 
     private ApiService apiService;
     private Picasso picasso;
+    private DaggerMvpApplicationComponent component;
 
     @Override
     public void onCreate() {
@@ -38,19 +40,38 @@ public class DaggerMvpApplication extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
-        DaggerMvpApplicationComponent component = DaggerDaggerMvpApplicationComponent.builder()
+        component = DaggerDaggerMvpApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
 
         apiService = component.getApiService();
         picasso = component.getPicasso();
+
+        ApiService apiService2 = component.getApiService();
+        Picasso picasso2 = component.getPicasso();
+
+        ApiService apiService3 = component.getApiService();
+        Picasso picasso3 = component.getPicasso();
+
+        Log.i("dagger", "apiservice " + apiService);
+        Log.i("dagger", "picasso " + picasso);
+
+        Log.i("dagger", "apiservice2 " + apiService2);
+        Log.i("dagger", "picasso2 " + picasso2);
+
+        Log.i("dagger", "apiservice3 " + apiService3);
+        Log.i("dagger", "picasso3 " + picasso3);
     }
 
-    public ApiService getApiService() {
-        return apiService;
+    public DaggerMvpApplicationComponent component() {
+        return component;
     }
 
-    public Picasso getPicasso() {
-        return picasso;
-    }
+//    public ApiService getApiService() {
+//        return apiService;
+//    }
+//
+//    public Picasso getPicasso() {
+//        return picasso;
+//    }
 }
